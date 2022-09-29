@@ -9,10 +9,18 @@ const checkNumberButton = document
   .querySelector('.check')
   .addEventListener('click', function () {
     const choosedNumber = Number(document.querySelector('.number-input').value);
+
+    //No input
     if (!choosedNumber) {
       document.querySelector('.guess-message').textContent = 'Введите число!';
+
+      //Player won the game
     } else if (choosedNumber === getRandomNumber) {
       document.querySelector('.guess-message').textContent = 'Угадали!';
+      document.querySelector('body').style.backgroundColor = 'rgb(9, 250, 21)';
+      document.querySelector('.question').style.width = '50rem';
+
+      //To high
     } else if (choosedNumber > getRandomNumber) {
       if (score > 1) {
         document.querySelector('.guess-message').textContent =
@@ -22,6 +30,8 @@ const checkNumberButton = document
       } else {
         document.querySelector('.guess-message').textContent = 'Game Over :(';
       }
+
+      //To low
     } else if (choosedNumber < getRandomNumber) {
       if (score > 1) {
         document.querySelector('.guess-message').textContent =
@@ -34,8 +44,5 @@ const checkNumberButton = document
         document.querySelector('.guess-message').textContent = 'Game Over :(';
         document.querySelector('.score').textContent = 0;
       }
-    } else if (choosedNumber > 20) {
-      document.querySelector('.guess-message').textContent =
-        'Введите число от 1 до 20!';
     }
   });
